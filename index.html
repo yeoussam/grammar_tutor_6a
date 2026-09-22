@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>to부정사 명사적 용법 연습 챗봇</title>
+<style>
+:root{--bg:#f5f7fb;--card:#ffffff;--ink:#172033;--muted:#667085;--line:#e4e7ec;--navy:#334155;--navy2:#475569;--green:#166534;--greenbg:#f0fdf4;--amber:#92400e;--amberbg:#fffbeb;--blue:#075985;--bluebg:#f0f9ff;--red:#991b1b;--redbg:#fef2f2}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#f8fafc 0%,#eef2f7 100%);color:var(--ink);font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif}
+.wrap{width:min(920px,calc(100% - 20px));margin:0 auto;padding:18px 0 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.brand{font-size:14px;font-weight:900;color:#475569}.smallbtn{border:1px solid var(--line);background:#fff;color:#475569;border-radius:10px;padding:8px 12px;font-weight:800;cursor:pointer}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 34px rgba(15,23,42,.08);overflow:hidden}
+.start{padding:34px}
+.start h1{font-size:clamp(30px,5vw,44px);line-height:1.12;margin:0 0 14px;color:#0f172a}
+.sub{margin:0;color:var(--muted);line-height:1.7}
+.startgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+label{display:block;font-size:13px;font-weight:900;color:#475569;margin-bottom:7px}
+input[type=text]{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:13px 14px;font-size:16px;outline:none}
+input[type=text]:focus{border-color:#64748b;box-shadow:0 0 0 3px rgba(100,116,139,.12)}
+.btn{border:0;border-radius:12px;padding:13px 17px;font-size:15px;font-weight:900;cursor:pointer}
+.primary{background:var(--navy);color:#fff}.primary:hover{background:var(--navy2)}
+.secondary{background:#eef2f7;color:#334155}
+.start .primary{width:100%;margin-top:14px}
+.notice{font-size:12px;color:#98a2b3;padding:16px 34px 24px;border-top:1px solid var(--line);background:#fbfdff;line-height:1.6}.rulebox{margin-top:18px;padding:14px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:13px;line-height:1.7}
+.head{padding:17px 23px;border-bottom:1px solid var(--line);background:#fbfdff}.headrow{display:flex;justify-content:space-between;align-items:flex-end}.qnum{font-size:18px;font-weight:950;color:#294f75}.prog{font-size:12px;color:#667085;font-weight:850}.progress{height:8px;background:#e7edf4;border-radius:99px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:#4b83bb}.main{padding:23px;min-height:535px}.messages{display:flex;flex-direction:column;gap:10px;margin-bottom:17px}.msg{max-width:91%;padding:13px 15px;border-radius:15px;line-height:1.68;white-space:pre-line;font-size:15px}.tutor{align-self:flex-start;background:#f1f6fb;border:1px solid #e0e9f2}.student{align-self:flex-end;background:#365d84;color:#fff}.good{background:var(--goodbg);color:var(--good)}.warn{background:var(--warnbg);color:#78350f}.questionbox{border:1px solid #dbe5ef;border-radius:17px;padding:19px}.instruction{font-weight:900;color:#4b6178;font-size:14px;line-height:1.55;margin-bottom:13px}.stem{font-size:17px;font-weight:750;line-height:1.9;white-space:pre-line;margin:8px 0 15px}.underline{text-decoration-line:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:#172b4d;font-weight:850}.wordbox{margin:11px 0 15px;padding:12px 14px;background:#f8fafc;border:1px solid #e5ebf1;border-radius:12px;color:#53677c;line-height:1.7}.options{display:grid;gap:9px}.opt{display:flex;gap:10px;text-align:left;padding:12px 13px;border:1px solid #dbe2ea;border-radius:12px;background:#fff;cursor:pointer;font-size:15px;line-height:1.55}.opt:hover{background:#f7fafc}.opt .n{font-weight:950;color:#42658b}.answerrow{display:flex;gap:9px}.answerrow input{flex:1}.next{display:flex;justify-content:flex-end;margin-top:15px}.minihelp{font-size:12px;color:#8492a3;margin-top:9px}
+.complete{padding:34px 24px;text-align:center;background:linear-gradient(#fff,#f4faff);position:relative;overflow:hidden}.complete h2{font-size:clamp(30px,5vw,43px);margin:8px 0;color:#244f78}.trophy{font-size:84px}.completeCard{max-width:620px;margin:19px auto;padding:20px;border:2px solid #bfdcf6;background:#fff;border-radius:18px}.identity{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0}.idbox{padding:10px;border:1px solid #dbeaf7;background:#f6faff;border-radius:11px}.sm{font-size:11px;color:#7891a8;font-weight:800}.big{font-size:16px;font-weight:950;color:#314f6b}.confetti{position:absolute;width:9px;height:18px;border-radius:2px;opacity:.78;animation:fall 5s linear infinite}@keyframes fall{0%{transform:translateY(-80px) rotate(0)}100%{transform:translateY(760px) rotate(540deg)}}
+@media(max-width:640px){.wrap{width:min(100% - 12px,920px);padding-top:8px}.start,.main,.complete{padding:20px}.head{padding:16px 20px}.startgrid{grid-template-columns:1fr}.msg{max-width:95%}.answerrow{flex-direction:column}.identity{grid-template-columns:1fr 1fr}.identity .idbox:last-child{grid-column:1/-1}}.main,.complete{padding:20px}.startgrid{grid-template-columns:1fr}.answerrow{flex-direction:column}.identity{grid-template-columns:1fr 1fr}.identity .idbox:last-child{grid-column:1/-1}}
+</style></head>
+<body><div class="wrap"><div class="top"><div class="brand">Middle School English · Grammar Tutor</div><button id="reset" class="smallbtn">처음부터</button></div><div id="app" class="card"></div></div>
+<script>
+const Q=[
+{
+ id:"1",type:"mc",
+ instruction:"다음 중 밑줄 친 to부정사의 쓰임이 나머지와 다른 하나는?",
+ htmlOptions:[
+  'I decided <span class="underline">to clean my room</span> before dinner.',
+  'My brother wants <span class="underline">to learn how to cook</span>.',
+  '<span class="underline">To keep a diary every day</span> is not easy.',
+  'We hope <span class="underline">to see the fireworks tonight</span>.',
+  'Jina plans <span class="underline">to join the school band</span>.'
+ ],
+ answer:2,
+ hints:[
+  "밑줄 친 부분이 일반동사 뒤에 오는지, 문장 전체의 주어 자리에 오는지 살펴보세요.",
+  "① decided, ② wants, ④ hope, ⑤ plans 뒤의 to부정사는 모두 동사의 목적어입니다.",
+  "③은 ‘매일 일기를 쓰는 것은’이라는 뜻으로 문장의 주어입니다."
+ ],
+ explanation:"정답은 ③입니다. ③의 To keep a diary every day는 주어이고, 나머지는 모두 일반동사의 목적어입니다."
+},
+{
+ id:"2",type:"mc",
+ instruction:"다음 중 밑줄 친 to부정사의 쓰임이 <보기>와 같은 것은?",
+ htmlStem:'<b>&lt;보기&gt;</b><br>Our goal is <span class="underline">to use less plastic</span>.',
+ htmlOptions:[
+  'I hope <span class="underline">to visit the science museum</span>.',
+  '<span class="underline">To learn from mistakes</span> is important.',
+  'Her job is <span class="underline">to answer visitors’ questions</span>.',
+  'They decided <span class="underline">to take the subway</span>.',
+  '<span class="underline">To get enough sleep</span> is good for you.'
+ ],
+ answer:2,
+ hints:[
+  "<보기>의 밑줄 부분은 be동사 is 뒤에서 Our goal의 구체적인 내용을 설명합니다.",
+  "같은 쓰임은 ‘주어 = to부정사’의 관계가 되는 문장입니다.",
+  "③은 Her job이 무엇인지 to answer visitors’ questions가 설명합니다."
+ ],
+ explanation:"정답은 ③입니다. <보기>와 ③의 to부정사는 모두 주어의 내용을 설명하는 보어입니다."
+},
+{
+ id:"3",type:"mc",
+ instruction:"다음 ⓐ~ⓓ 중 밑줄 친 to부정사가 <보기>와 같은 쓰임으로 쓰인 것끼리 묶인 것은?",
+ htmlStem:'<b>&lt;보기&gt;</b><br><span class="underline">To understand other people</span> takes time.<br><br>ⓐ Mina wants <span class="underline">to understand the problem</span>.<br>ⓑ <span class="underline">To exercise regularly</span> is important.<br>ⓒ His dream is <span class="underline">to travel around Korea</span>.<br>ⓓ <span class="underline">To make new friends</span> can be difficult.',
+ options:["ⓐ, ⓑ","ⓐ, ⓒ","ⓑ, ⓒ","ⓑ, ⓓ","ⓒ, ⓓ"],
+ answer:3,
+ hints:[
+  "<보기>의 to부정사구는 문장 맨 앞에서 주어 역할을 합니다.",
+  "ⓑ와 ⓓ도 문장 맨 앞에서 각각 is와 can be의 주어 역할을 합니다.",
+  "ⓐ는 목적어, ⓒ는 보어입니다."
+ ],
+ explanation:"정답은 ④ ⓑ, ⓓ입니다. <보기>, ⓑ, ⓓ의 to부정사는 모두 주어로 쓰였습니다."
+},
+{
+ id:"4",type:"mc",
+ instruction:"다음 세 문장의 밑줄 친 to부정사의 쓰임을 순서대로 바르게 나타낸 것은?",
+ htmlStem:'(A) My hobby is <span class="underline">to take pictures of flowers</span>.<br>(B) <span class="underline">To ride a bike in the rain</span> can be dangerous.<br>(C) We decided <span class="underline">to stay home</span>.',
+ options:[
+  "주어 - 목적어 - 보어",
+  "보어 - 주어 - 목적어",
+  "보어 - 목적어 - 주어",
+  "목적어 - 주어 - 보어",
+  "목적어 - 보어 - 주어"
+ ],
+ answer:1,
+ hints:[
+  "(A)는 be동사 is 뒤에서 My hobby를 설명합니다.",
+  "(B)는 문장 맨 앞에서 can be dangerous의 주어이고, (C)는 decided 뒤에서 목적어입니다.",
+  "순서는 보어 - 주어 - 목적어입니다."
+ ],
+ explanation:"정답은 ② 보어 - 주어 - 목적어입니다."
+},
+{
+ id:"5",type:"mc",
+ instruction:"다음 대화의 밑줄 친 to부정사의 쓰임에 대한 설명으로 알맞은 것은?",
+ htmlStem:'A: What do you want to do this weekend?<br>B: I want <span class="underline">to visit my grandmother</span>.<br>A: Sounds good. My plan is <span class="underline">to stay home and read</span>.',
+ options:[
+  "두 to부정사는 모두 주어이다.",
+  "두 to부정사는 모두 목적어이다.",
+  "두 to부정사는 모두 보어이다.",
+  "첫 번째는 목적어, 두 번째는 보어이다.",
+  "첫 번째는 보어, 두 번째는 목적어이다."
+ ],
+ answer:3,
+ hints:[
+  "첫 번째는 want 뒤에 있고, 두 번째는 My plan is 뒤에 있습니다.",
+  "want 뒤의 to부정사는 ‘무엇을 원하는지’를 나타내고, is 뒤의 to부정사는 plan의 내용을 설명합니다.",
+  "첫 번째는 목적어, 두 번째는 보어입니다."
+ ],
+ explanation:"정답은 ④입니다. to visit my grandmother는 want의 목적어이고, to stay home and read는 My plan을 설명하는 보어입니다."
+},
+{
+ id:"6",type:"mc",
+ instruction:"다음 중 밑줄 친 to부정사가 문장의 <b>주어</b>로 쓰인 문장의 개수는?",
+ htmlStem:'ⓐ <span class="underline">To eat breakfast</span> is important.<br>ⓑ I like <span class="underline">to listen to music</span> after school.<br>ⓒ <span class="underline">To ask questions</span> is a good way to learn.<br>ⓓ Our plan is <span class="underline">to leave early</span>.<br>ⓔ <span class="underline">To keep your room clean</span> takes time.',
+ options:["1개","2개","3개","4개","5개"],
+ answer:2,
+ hints:[
+  "문장 맨 앞의 to부정사구가 뒤의 동사 is 또는 takes의 주어가 되는 문장을 찾으세요.",
+  "ⓐ, ⓒ, ⓔ는 각각 문장 전체의 주어입니다.",
+  "ⓑ는 목적어, ⓓ는 보어이므로 주어는 총 3개입니다."
+ ],
+ explanation:"정답은 ③ 3개입니다. ⓐ, ⓒ, ⓔ의 to부정사가 주어로 쓰였습니다."
+},
+{
+ id:"7",type:"mc",
+ instruction:"다음 중 밑줄 친 to부정사의 쓰임에 대한 설명이 <b>잘못된</b> 것은?",
+ htmlOptions:[
+  '<span class="underline">To read in a moving car</span> can make you sick. — 주어',
+  'I hope <span class="underline">to hear from you soon</span>. — 목적어',
+  'Her dream is <span class="underline">to become a famous artist</span>. — 보어',
+  'We agreed <span class="underline">to meet at the library</span>. — 보어',
+  'My goal is <span class="underline">to speak English confidently</span>. — 보어'
+ ],
+ answer:3,
+ hints:[
+  "일반동사 agreed 뒤의 to부정사가 무엇을 설명하는지 생각해 보세요.",
+  "agree to + 동사원형은 ‘~하기로 동의하다’로, to부정사가 agree의 내용을 완성합니다.",
+  "④의 to meet at the library는 보어가 아니라 목적어입니다."
+ ],
+ explanation:"정답은 ④입니다. to meet at the library는 일반동사 agreed의 목적어로 쓰였습니다."
+},
+{
+ id:"8",type:"mc",
+ instruction:"다음 중 두 문장의 밑줄 친 to부정사의 쓰임이 서로 <b>다른</b> 것은?",
+ options:[
+  "① To exercise is healthy. / To sleep well is important.",
+  "② I want to go home. / We hope to win the game.",
+  "③ My dream is to be a pilot. / Her plan is to study abroad.",
+  "④ I need to buy a notebook. / My job is to help visitors.",
+  "⑤ To make mistakes is natural. / To learn from them is important."
+ ],
+ htmlOptions:[
+  '<span class="underline">To exercise</span> is healthy. / <span class="underline">To sleep well</span> is important.',
+  'I want <span class="underline">to go home</span>. / We hope <span class="underline">to win the game</span>.',
+  'My dream is <span class="underline">to be a pilot</span>. / Her plan is <span class="underline">to study abroad</span>.',
+  'I need <span class="underline">to buy a notebook</span>. / My job is <span class="underline">to help visitors</span>.',
+  '<span class="underline">To make mistakes</span> is natural. / <span class="underline">To learn from them</span> is important.'
+ ],
+ answer:3,
+ hints:[
+  "각 쌍에서 두 to부정사가 같은 위치와 역할을 하는지 비교하세요.",
+  "④의 첫 번째 to부정사는 need의 목적어이고, 두 번째는 My job을 설명하는 보어입니다.",
+  "나머지 네 쌍은 각각 주어-주어, 목적어-목적어, 보어-보어, 주어-주어입니다."
+ ],
+ explanation:"정답은 ④입니다. to buy a notebook은 목적어이고, to help visitors는 보어입니다."
+},
+{
+ id:"9",type:"mc",
+ instruction:"다음 글의 밑줄 친 to부정사 ⓐ~ⓒ의 쓰임을 순서대로 바르게 나타낸 것은?",
+ htmlStem:'Joon has a new goal. His goal is ⓐ <span class="underline">to read one English book every month</span>. He also wants ⓑ <span class="underline">to write a short review</span> after each book. ⓒ <span class="underline">To keep this habit for a year</span> may be difficult, but he wants to try.',
+ options:[
+  "주어 - 목적어 - 보어",
+  "보어 - 목적어 - 주어",
+  "목적어 - 보어 - 주어",
+  "보어 - 주어 - 목적어",
+  "목적어 - 주어 - 보어"
+ ],
+ answer:1,
+ hints:[
+  "ⓐ는 His goal is 뒤, ⓑ는 wants 뒤, ⓒ는 문장 맨 앞에 있습니다.",
+  "ⓐ는 goal을 설명하고, ⓑ는 wants의 내용을 나타내며, ⓒ는 may be difficult의 주어입니다.",
+  "보어 - 목적어 - 주어 순서입니다."
+ ],
+ explanation:"정답은 ② 보어 - 목적어 - 주어입니다."
+},
+{id:"10",type:"text",instruction:"주어진 말을 바르게 배열하여 문장을 완성하세요.",korean:"매일 운동하는 것은 좋다.",words:"to / every day / exercise / is / good",accepted:["To exercise every day is good"],hints:["‘~하는 것은’이 주어이므로 To + 동사원형으로 시작합니다.","To exercise every day가 하나의 주어 덩어리입니다.","To exercise every day + is + good 순서입니다."],explanation:"To exercise every day is good.가 정답입니다."},
+{id:"11",type:"text",instruction:"주어진 말을 바르게 배열하여 문장을 완성하세요.",korean:"나는 새 자전거를 사고 싶다.",words:"want / I / a new bike / to buy",accepted:["I want to buy a new bike"],hints:["주어 I로 시작합니다.","want 뒤에 to부정사가 옵니다.","I + want + to buy + a new bike 순서입니다."],explanation:"I want to buy a new bike.가 정답입니다."},
+{id:"12",type:"text",instruction:"주어진 말을 바르게 배열하여 문장을 완성하세요.",korean:"나의 계획은 이번 주말에 부산을 방문하는 것이다.",words:"my plan / is / Busan / to visit / this weekend",accepted:["My plan is to visit Busan this weekend"],hints:["My plan 뒤에 is가 옵니다.","‘부산을 방문하는 것’은 to visit Busan입니다.","My plan + is + to visit Busan + this weekend 순서입니다."],explanation:"My plan is to visit Busan this weekend.가 정답입니다."},
+{id:"13",type:"text",instruction:"다음 우리말과 주어진 단어를 참고하여 영작하세요.",korean:"다른 사람들을 돕는 것은 중요하다.",words:"help / other people / important",accepted:["To help other people is important"],hints:["‘다른 사람들을 돕는 것’이 주어입니다.","To help other people로 시작해 보세요.","To help other people + is + important입니다."],explanation:"To help other people is important.가 정답입니다."},
+{id:"14",type:"text",instruction:"다음 우리말과 주어진 단어를 참고하여 영작하세요.",korean:"나는 방과 후에 축구를 하고 싶다.",words:"want / play soccer / after school",accepted:["I want to play soccer after school"],hints:["‘~하고 싶다’는 want + to부정사입니다.","I want to play soccer로 시작해 보세요.","I want to play soccer + after school입니다."],explanation:"I want to play soccer after school.가 정답입니다."},
+{id:"15",type:"text",instruction:"다음 우리말과 주어진 단어를 참고하여 영작하세요.",korean:"나의 꿈은 선생님이 되는 것이다.",words:"my dream / be / a teacher",accepted:["My dream is to be a teacher"],hints:["My dream 뒤에 is가 필요합니다.","‘선생님이 되는 것’은 to be a teacher입니다.","My dream + is + to be a teacher입니다."],explanation:"My dream is to be a teacher.가 정답입니다."},
+{id:"16",type:"role",instruction:"빈칸에 들어갈 알맞은 be동사를 고르세요.",htmlStem:'<span class="underline">To play computer games with my friends</span> ______ fun.',options:["is","are"],answer:0,hints:["computer games와 my friends가 복수처럼 보여도, 문장의 주어가 무엇인지 먼저 찾으세요.","문장의 주어는 To play computer games with my friends 전체입니다. to부정사구는 하나의 행동을 나타냅니다.","to부정사구가 주어로 쓰이면 단수로 취급하므로 is를 사용합니다."],explanation:"정답은 is입니다. computer games와 friends는 복수명사이지만, 문장의 주어는 To play computer games with my friends라는 하나의 to부정사구이므로 단수 취급합니다."}
+];
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [b[i],b[j]]=[b[j],b[i]];
+  }
+  return b;
+}
+function sampleUnique(a,n,exclude=[]){
+  const blocked=new Set(exclude);
+  const pool=a.filter(x=>!blocked.has(x));
+  return shuffle(pool).slice(0,n);
+}
+
+const R={
+ subject:[
+  '<span class="underline">To get enough sleep</span> is important.',
+  '<span class="underline">To learn from mistakes</span> takes time.',
+  '<span class="underline">To use less plastic</span> is good for the Earth.',
+  '<span class="underline">To help other people</span> can make us happy.'
+ ],
+ object:[
+  'I hope <span class="underline">to see you again</span>.',
+  'We decided <span class="underline">to take the bus</span>.',
+  'Mina wants <span class="underline">to learn Chinese</span>.',
+  'They plan <span class="underline">to visit the museum</span>.'
+ ],
+ complement:[
+  'My goal is <span class="underline">to exercise every day</span>.',
+  'Her dream is <span class="underline">to be a scientist</span>.',
+  'Our plan is <span class="underline">to leave early</span>.',
+  'His job is <span class="underline">to help visitors</span>.'
+ ]
+};
+
+function bonusDifferent(baseRole, oddRole){
+  const baseItems=sampleUnique(R[baseRole],3);
+  const oddItem=sampleUnique(R[oddRole],1)[0];
+  let a=[...baseItems.map(t=>({r:baseRole,t})),{r:oddRole,t:oddItem}];
+  a=shuffle(a);
+  return{
+    type:"mc",
+    instruction:"BONUS · 다음 중 밑줄 친 to부정사의 쓰임이 나머지와 다른 하나는?",
+    htmlOptions:a.map(x=>x.t),
+    answer:a.findIndex(x=>x.r===oddRole),
+    hint:"세 문장은 같은 역할이고 한 문장만 다른 역할입니다. to부정사의 위치와 앞에 오는 동사를 비교하세요.",
+    explanation:`한 문장만 ${oddRole==="subject"?"주어":oddRole==="object"?"목적어":"보어"}로 쓰였습니다.`
+  };
+}
+function bonusSame(role){
+  const other=role==="subject"?["object","complement"]:
+              role==="object"?["subject","complement"]:
+              ["subject","object"];
+  const view=pick(R[role]);
+  const correct=sampleUnique(R[role],1,[view])[0];
+  const d1=sampleUnique(R[other[0]],2);
+  const d2=sampleUnique(R[other[1]],1)[0];
+  let a=[
+    {r:role,t:correct},
+    {r:other[0],t:d1[0]},
+    {r:other[0],t:d1[1]},
+    {r:other[1],t:d2}
+  ];
+  a=shuffle(a);
+  return{
+    type:"mc",
+    instruction:"BONUS · 다음 중 밑줄 친 to부정사의 쓰임이 <보기>와 같은 것은?",
+    htmlStem:`<b>&lt;보기&gt;</b><br>${view}`,
+    htmlOptions:a.map(x=>x.t),
+    answer:a.findIndex(x=>x.r===role),
+    hint:"<보기>에서 to부정사가 문장 맨 앞인지, 일반동사 뒤인지, be동사 뒤인지 먼저 확인하세요.",
+    explanation:"<보기>와 같은 문장 성분으로 쓰인 문장을 찾으면 됩니다."
+  };
+}
+function bonusSequence(){
+ return{
+  type:"mc",
+  instruction:"BONUS · 세 문장의 밑줄 친 to부정사의 쓰임을 순서대로 바르게 나타낸 것은?",
+  htmlStem:`(A) ${pick(R.complement)}<br>(B) ${pick(R.subject)}<br>(C) ${pick(R.object)}`,
+  options:["주어 - 목적어 - 보어","보어 - 주어 - 목적어","보어 - 목적어 - 주어","목적어 - 주어 - 보어"],
+  answer:1,
+  hint:"(A)는 be동사 뒤, (B)는 문장 맨 앞, (C)는 일반동사 뒤에 있습니다.",
+  explanation:"순서는 보어 - 주어 - 목적어입니다."
+ };
+}
+function bonusCount(){
+  const s=sampleUnique(R.subject,2);
+  const o=sampleUnique(R.object,1)[0];
+  const c=sampleUnique(R.complement,1)[0];
+  return{
+    type:"mc",
+    instruction:"BONUS · 다음 중 밑줄 친 to부정사가 주어로 쓰인 문장의 개수는?",
+    htmlStem:`ⓐ ${s[0]}<br>ⓑ ${o}<br>ⓒ ${s[1]}<br>ⓓ ${c}`,
+    options:["1개","2개","3개","4개"],
+    answer:1,
+    hint:"문장 맨 앞에서 뒤의 동사를 이끄는 to부정사구를 찾으세요.",
+    explanation:"주어로 쓰인 문장은 2개입니다."
+  };
+}
+function bonusPair(){
+  const s=sampleUnique(R.subject,2);
+  const o=sampleUnique(R.object,3);
+  const c=sampleUnique(R.complement,3);
+  return{
+    type:"mc",
+    instruction:"BONUS · 두 문장의 밑줄 친 to부정사의 쓰임이 서로 다른 것은?",
+    htmlOptions:[
+      `${s[0]} / ${s[1]}`,
+      `${o[0]} / ${o[1]}`,
+      `${c[0]} / ${c[1]}`,
+      `${o[2]} / ${c[2]}`
+    ],
+    answer:3,
+    hint:"앞 세 쌍은 같은 역할끼리 묶여 있습니다. 서로 다른 역할의 쌍을 찾으세요.",
+    explanation:"④는 목적어와 보어가 한 쌍으로 묶여 있어 서로 쓰임이 다릅니다."
+  };
+}
+function writingBonus(kind){
+ const bank={
+  subject:[
+   {k:"일찍 자는 것은 건강에 좋다.",w:"go to bed early / good for your health",a:["To go to bed early is good for your health"]},
+   {k:"영어를 매일 연습하는 것은 중요하다.",w:"practice English every day / important",a:["To practice English every day is important"]}
+  ],
+  object:[
+   {k:"나는 오늘 숙제를 끝내고 싶다.",w:"want / finish my homework / today",a:["I want to finish my homework today"]},
+   {k:"우리는 그 영화를 보고 싶다.",w:"want / see the movie",a:["We want to see the movie"]}
+  ],
+  complement:[
+   {k:"나의 목표는 매일 책을 읽는 것이다.",w:"my goal / read books / every day",a:["My goal is to read books every day"]},
+   {k:"그녀의 꿈은 의사가 되는 것이다.",w:"her dream / be / a doctor",a:["Her dream is to be a doctor"]}
+  ]
+ };
+ const x=pick(bank[kind]);
+ return{type:"text",instruction:"BONUS · 우리말과 주어진 말을 참고하여 영작하세요.",korean:x.k,words:x.w,accepted:x.a,hint:"to + 동사원형을 하나의 명사 덩어리처럼 사용하세요.",explanation:`가능한 정답: ${x.a[0]}.`};
+}
+function singularBonus(){
+ const x=pick([
+  {s:"To read many books in English",c:"useful"},
+  {s:"To play board games with my classmates",c:"fun"},
+  {s:"To visit famous museums with my parents",c:"exciting"},
+  {s:"To help younger students with their homework",c:"important"}
+ ]);
+ return{
+  type:"mc",
+  instruction:"BONUS · 빈칸에 알맞은 be동사를 고르세요.",
+  htmlStem:`<span class="underline">${x.s}</span> ______ ${x.c}.`,
+  options:["is","are"],
+  answer:0,
+  hint:"밑줄 안에 복수명사가 있더라도, 문장 전체의 주어가 무엇인지 확인하세요. to부정사구 전체는 하나의 행동을 나타냅니다.",
+  explanation:`${x.s} 전체가 하나의 to부정사구 주어이므로 단수 취급하여 is를 사용합니다.`
+ };
+}
+function makeBonus(q){
+ if(q.id==="1")return bonusDifferent("object","subject");
+ if(q.id==="2")return bonusSame("complement");
+ if(q.id==="3")return bonusSame("subject");
+ if(q.id==="4")return bonusSequence();
+ if(q.id==="5")return bonusPair();
+ if(q.id==="6")return bonusCount();
+ if(q.id==="7")return bonusDifferent("complement","object");
+ if(q.id==="8")return bonusPair();
+ if(q.id==="9")return bonusSequence();
+ if(["10","13"].includes(q.id))return writingBonus("subject");
+ if(["11","14"].includes(q.id))return writingBonus("object");
+ if(["12","15"].includes(q.id))return writingBonus("complement");
+ return singularBonus();
+}
+
+
+const STORAGE_KEY="toInfNounTutorV6";
+
+const freshState=()=>({
+  started:false,
+  name:"",
+  group:"",
+  idx:0,
+  attempts:Array(Q.length).fill(0),
+  history:[],
+  mode:"intro",   // intro | question | questionDone | bonus | bonusDone | done
+  bonus:null,
+  bonusAttempts:0,
+  finishedAt:""
+});
+
+let S=freshState();
+
+const app=document.getElementById("app");
+const reset=document.getElementById("reset");
+const marks=["①","②","③","④","⑤"];
+
+function esc(x){
+  return String(x??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+function norm(x){
+  return String(x??"")
+    .toLowerCase()
+    .replace(/[’‘`]/g,"'")
+    .replace(/[.,!?]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
+function save(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(S));
+}
+function clearOldStorage(){
+  ["toInfNounTutorV1","toInfNounTutorV2","toInfNounTutorV3","toInfNounTutorV4","toInfNounTutorV6"]
+    .forEach(k=>localStorage.removeItem(k));
+}
+function add(role,text,kind=""){
+  S.history.push({role,text,kind});
+  if(S.history.length>32) S.history=S.history.slice(-32);
+  save();
+}
+function current(){ return Q[S.idx]; }
+function messages(){
+  return S.history.slice(-9).map(m=>
+    `<div class="msg ${m.role==="student"?"student":"tutor"} ${m.kind||""}">${esc(m.text)}</div>`
+  ).join("");
+}
+
+function renderIntro(){
+  S.mode="intro";
+  app.innerHTML=`<section class="start">
+    <h1>To-Infinitive<br>Grammar Tutor</h1>
+    <p class="sub">to부정사의 명사적 용법을 다양한 문제로 연습해 봅시다.<br>
+    쓰임 비교, 묶음·순서·개수 판단, 문맥 문제와 영작 문제를 함께 풀어 봅니다.</p>
+
+    <div class="startgrid">
+      <div>
+        <label>이름 또는 별명 (선택)</label>
+        <input id="name" type="text" placeholder="예: 민수">
+      </div>
+      <div>
+        <label>반 / 번호 (선택)</label>
+        <input id="group" type="text" placeholder="예: 1-3 / 12">
+      </div>
+    </div>
+
+    <button id="start" class="btn primary">학습 시작하기</button>
+
+    <div class="rulebox">
+      <b>Remember!</b><br>
+      • to부정사의 명사적 용법: <b>주어 / 목적어 / 보어</b><br>
+      • 형태: <b>to + 동사원형</b><br>
+      • 주어로 쓰인 to부정사구는 <b>단수</b>로 취급
+    </div>
+  </section>
+  <div class="notice">진행 기록은 이 기기의 브라우저에만 저장됩니다.</div>`;
+
+  const startBtn=document.getElementById("start");
+  startBtn.addEventListener("click",()=>{
+    const name=document.getElementById("name").value.trim();
+    const group=document.getElementById("group").value.trim();
+
+    clearOldStorage();
+    S=freshState();
+    S.started=true;
+    S.name=name;
+    S.group=group;
+    S.mode="question";
+    add("tutor","안녕하세요! 1번 문제부터 시작해 볼게요. 밑줄 친 to부정사의 위치와 쓰임을 비교해 보세요.");
+    renderQuestion();
+  },{once:true});
+}
+
+function questionBox(q){
+  let s=`<div class="questionbox"><div class="instruction">${q.instruction}</div>`;
+
+  if(q.korean) s+=`<div class="stem"><b>우리말:</b> ${esc(q.korean)}</div>`;
+  if(q.htmlStem) s+=`<div class="stem">${q.htmlStem}</div>`;
+  if(q.words) s+=`<div class="wordbox"><b>주어진 말</b><br>${esc(q.words)}</div>`;
+
+  if(q.type==="mc" || q.type==="role"){
+    const list=q.htmlOptions || q.options || [];
+    const useHtml=Array.isArray(q.htmlOptions);
+    s+=`<div class="options">${
+      list.map((o,i)=>`<button class="opt qopt" data-k="${i}">
+        <span class="n">${marks[i]}</span>
+        <span>${useHtml?o:esc(o)}</span>
+      </button>`).join("")
+    }</div>`;
+  }else{
+    s+=`<div class="answerrow">
+      <input id="ans" type="text" autocomplete="off" placeholder="영어 문장을 입력하세요">
+      <button id="go" class="btn primary">확인</button>
+    </div>
+    <div class="minihelp">대문자와 마침표 때문에 오답 처리되지는 않습니다.</div>`;
+  }
+
+  return s+`</div>`;
+}
+
+function renderQuestion(){
+  S.mode="question";
+  const q=current();
+  const pct=Math.round(S.idx/Q.length*100);
+
+  app.innerHTML=`<div class="head">
+    <div class="headrow">
+      <div class="qnum">문제 ${q.id}</div>
+      <div class="prog">${S.idx+1} / ${Q.length}</div>
+    </div>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+  </div>
+  <div class="main">
+    <div class="messages">${messages()}</div>
+    ${questionBox(q)}
+  </div>`;
+
+  document.querySelectorAll(".qopt").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      submitMainChoice(Number(btn.dataset.k));
+    },{once:true});
+  });
+
+  const input=document.getElementById("ans");
+  if(input){
+    const go=document.getElementById("go");
+    const submit=()=>submitMainText(input.value);
+    go.addEventListener("click",submit,{once:true});
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Enter"){
+        e.preventDefault();
+        go.click();
+      }
+    });
+    setTimeout(()=>input.focus(),0);
+  }
+
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+
+function mainHint(q){
+  const n=S.attempts[S.idx];
+  const h=q.hints[Math.min(n-1,q.hints.length-1)];
+  const label=n===1?"💡 힌트":n===2?"🔎 한 번 더 생각해 봅시다":"📘 핵심 단서";
+  return `${label}\n${h}\n\n다시 풀어 보세요.`;
+}
+
+function submitMainChoice(k){
+  if(S.mode!=="question") return;
+
+  const q=current();
+  S.attempts[S.idx]++;
+
+  const list=q.options || q.htmlOptions || [];
+  add("student",`${marks[k]} ${q.options?list[k]:"선택한 문장"}`);
+
+  if(k===q.answer){
+    add("tutor",`정답입니다! 🎉\n${q.explanation}`,"good");
+
+    if(S.attempts[S.idx]>1){
+      S.bonus=makeBonus(q);
+      S.bonusAttempts=0;
+      S.mode="bonus";
+      add("tutor","한 번 틀렸던 문제이므로 같은 유형의 BONUS PRACTICE를 한 문제 더 풀어 볼게요.");
+      renderBonus();
+    }else{
+      S.mode="questionDone";
+      save();
+      renderQuestionDone();
+    }
+  }else{
+    add("tutor",mainHint(q),"warn");
+    renderQuestion();
+  }
+}
+
+function submitMainText(v){
+  if(S.mode!=="question" || !v.trim()) return;
+
+  const q=current();
+  S.attempts[S.idx]++;
+  add("student",v);
+
+  const ok=q.accepted.some(a=>norm(a)===norm(v));
+
+  if(ok){
+    add("tutor",`정답입니다! 🎉\n${q.explanation}`,"good");
+
+    if(S.attempts[S.idx]>1){
+      S.bonus=makeBonus(q);
+      S.bonusAttempts=0;
+      S.mode="bonus";
+      add("tutor","한 번 틀렸던 문제이므로 같은 유형의 BONUS PRACTICE를 한 문제 더 풀어 볼게요.");
+      renderBonus();
+    }else{
+      S.mode="questionDone";
+      save();
+      renderQuestionDone();
+    }
+  }else{
+    add("tutor",mainHint(q),"warn");
+    renderQuestion();
+  }
+}
+
+function renderQuestionDone(){
+  const indexAtRender=S.idx;
+  const last=indexAtRender===Q.length-1;
+  const pct=Math.round((indexAtRender+1)/Q.length*100);
+
+  app.innerHTML=`<div class="head">
+    <div class="headrow">
+      <div class="qnum">문제 ${Q[indexAtRender].id} 해결 완료</div>
+      <div class="prog">${indexAtRender+1} / ${Q.length}</div>
+    </div>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+  </div>
+  <div class="main">
+    <div class="messages">${messages()}</div>
+    <div class="next">
+      <button id="mainNext" class="btn primary">${last?"학습 완료 확인하기":"다음 문제 →"}</button>
+    </div>
+  </div>`;
+
+  const btn=document.getElementById("mainNext");
+  btn.addEventListener("click",()=>{
+    btn.disabled=true;
+
+    if(S.mode!=="questionDone" || S.idx!==indexAtRender) return;
+
+    if(last){
+      finishStudy();
+    }else{
+      S.idx=indexAtRender+1;
+      S.mode="question";
+      add("tutor",`좋아요. 문제 ${Q[S.idx].id}로 넘어갑니다.`);
+      renderQuestion();
+    }
+  },{once:true});
+}
+
+function bonusBox(b){
+  let s=`<div class="questionbox"><div class="instruction">${b.instruction}</div>`;
+
+  if(b.korean) s+=`<div class="stem"><b>우리말:</b> ${esc(b.korean)}</div>`;
+  if(b.htmlStem) s+=`<div class="stem">${b.htmlStem}</div>`;
+  if(b.words) s+=`<div class="wordbox"><b>주어진 말</b><br>${esc(b.words)}</div>`;
+
+  if(b.type==="mc"){
+    const list=b.htmlOptions || b.options || [];
+    const useHtml=Array.isArray(b.htmlOptions);
+    s+=`<div class="options">${
+      list.map((o,i)=>`<button class="opt bonusOpt" data-k="${i}">
+        <span class="n">${marks[i]}</span>
+        <span>${useHtml?o:esc(o)}</span>
+      </button>`).join("")
+    }</div>`;
+  }else{
+    s+=`<div class="answerrow">
+      <input id="bonusAns" type="text" autocomplete="off" placeholder="영어 문장을 입력하세요">
+      <button id="bonusGo" class="btn primary">확인</button>
+    </div>`;
+  }
+
+  return s+`</div>`;
+}
+
+function renderBonus(){
+  S.mode="bonus";
+  const b=S.bonus;
+  const pct=Math.round((S.idx+1)/Q.length*100);
+
+  app.innerHTML=`<div class="head">
+    <div class="headrow">
+      <div class="qnum">BONUS PRACTICE</div>
+      <div class="prog">문제 ${S.idx+1} 보충</div>
+    </div>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+  </div>
+  <div class="main">
+    <div class="messages">${messages()}</div>
+    ${bonusBox(b)}
+  </div>`;
+
+  document.querySelectorAll(".bonusOpt").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      submitBonusChoice(Number(btn.dataset.k));
+    },{once:true});
+  });
+
+  const input=document.getElementById("bonusAns");
+  if(input){
+    const go=document.getElementById("bonusGo");
+    const submit=()=>submitBonusText(input.value);
+    go.addEventListener("click",submit,{once:true});
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Enter"){
+        e.preventDefault();
+        go.click();
+      }
+    });
+    setTimeout(()=>input.focus(),0);
+  }
+}
+
+function submitBonusChoice(k){
+  if(S.mode!=="bonus" || !S.bonus) return;
+
+  const b=S.bonus;
+  S.bonusAttempts++;
+  add("student",`BONUS: ${marks[k]} ${b.options?b.options[k]:"선택한 문장"}`);
+
+  if(k===b.answer){
+    add("tutor",`보충문제도 정답입니다! 🌟\n${b.explanation}`,"good");
+    S.mode="bonusDone";
+    save();
+    renderBonusDone();
+  }else{
+    const msg=S.bonusAttempts===1?b.hint:b.explanation;
+    add("tutor",`BONUS 힌트 💡\n${msg}\n\n다시 풀어 보세요.`,"warn");
+    renderBonus();
+  }
+}
+
+function submitBonusText(v){
+  if(S.mode!=="bonus" || !S.bonus || !v.trim()) return;
+
+  const b=S.bonus;
+  S.bonusAttempts++;
+  add("student",`BONUS: ${v}`);
+
+  const ok=b.accepted.some(a=>norm(a)===norm(v));
+
+  if(ok){
+    add("tutor",`보충문제도 정답입니다! 🌟\n${b.explanation}`,"good");
+    S.mode="bonusDone";
+    save();
+    renderBonusDone();
+  }else{
+    const msg=S.bonusAttempts===1?b.hint:b.explanation;
+    add("tutor",`BONUS 힌트 💡\n${msg}\n\n다시 풀어 보세요.`,"warn");
+    renderBonus();
+  }
+}
+
+function renderBonusDone(){
+  const indexAtRender=S.idx;
+  const last=indexAtRender===Q.length-1;
+  const pct=Math.round((indexAtRender+1)/Q.length*100);
+
+  app.innerHTML=`<div class="head">
+    <div class="headrow">
+      <div class="qnum">BONUS PRACTICE 해결 완료</div>
+      <div class="prog">문제 ${indexAtRender+1} 보충</div>
+    </div>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+  </div>
+  <div class="main">
+    <div class="messages">${messages()}</div>
+    <div class="next">
+      <button id="bonusNext" class="btn primary">${last?"학습 완료 확인하기":"다음 문제 →"}</button>
+    </div>
+  </div>`;
+
+  const btn=document.getElementById("bonusNext");
+  btn.addEventListener("click",()=>{
+    btn.disabled=true;
+
+    if(S.mode!=="bonusDone" || S.idx!==indexAtRender) return;
+
+    S.bonus=null;
+    S.bonusAttempts=0;
+
+    if(last){
+      finishStudy();
+    }else{
+      S.idx=indexAtRender+1;
+      S.mode="question";
+      add("tutor",`좋아요. 문제 ${Q[S.idx].id}로 넘어갑니다.`);
+      renderQuestion();
+    }
+  },{once:true});
+}
+
+function confetti(){
+  const c=["#f35b66","#ffd44d","#55b981","#6d8cff","#ff8f4e","#70c7d4"];
+  let s="";
+  for(let i=0;i<20;i++){
+    s+=`<span class="confetti" style="left:${(i*47+8)%100}%;top:-40px;background:${c[i%c.length]};animation-delay:${(i%7)*.38}s;animation-duration:${4.3+(i%5)*.45}s"></span>`;
+  }
+  return s;
+}
+
+function timeText(){
+  const d=S.finishedAt?new Date(S.finishedAt):new Date();
+  return new Intl.DateTimeFormat("ko-KR",{
+    year:"numeric",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"
+  }).format(d);
+}
+
+function finishStudy(){
+  S.mode="done";
+  S.finishedAt=new Date().toISOString();
+  save();
+  renderDone();
+}
+
+function renderDone(){
+  const displayName=S.name||"학생";
+  const displayGroup=S.group||"미입력";
+
+  app.innerHTML=`<section class="complete">
+    ${confetti()}
+    <div class="trophy">🎉🏆🎉</div>
+    <h2>16문제 완료!</h2>
+    <p><b>${esc(displayName)}</b>, to부정사의 명사적 용법 학습을 모두 마쳤습니다.<br>
+    to부정사의 쓰임 비교, 주어의 단수 취급, 영작까지 끝까지 해결했어요.</p>
+
+    <div class="completeCard">
+      <div style="font-weight:950;font-size:21px;color:#214f79">✅ 학습 완료</div>
+      <div class="identity" style="grid-template-columns:1fr 1fr">
+        <div class="idbox">
+          <div class="sm">이름 또는 별명</div>
+          <div class="big">${esc(S.name||"미입력")}</div>
+        </div>
+        <div class="idbox">
+          <div class="sm">반 / 번호</div>
+          <div class="big">${esc(displayGroup)}</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:#667f96">완료 시각: ${esc(timeText())}</div>
+    </div>
+
+    <button id="again" class="btn secondary">처음부터 다시 풀기</button>
+  </section>`;
+
+  document.getElementById("again").addEventListener("click",hardReset,{once:true});
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function hardReset(){
+  clearOldStorage();
+  S=freshState();
+  renderIntro();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// 확인창 없이 언제든 즉시 첫 화면으로 돌아감
+reset.addEventListener("click",hardReset);
+
+renderIntro();
+</script></body></html>
